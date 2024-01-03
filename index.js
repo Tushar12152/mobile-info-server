@@ -31,7 +31,11 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
     const userCollection = client.db("mobileInfo-db").collection("users");
+    const mobileCollection = client.db("mobileInfo-db").collection("mobiles");
+ 
     
+
+//user collection
 
     app.post('/users',async(req,res)=>{
            const user=req.body;
@@ -47,6 +51,17 @@ async function run() {
     })
 
 
+
+
+
+    //mobile-collection
+
+    app.post('/mobiles',async(req,res)=>{
+           const mobile=req.body;
+          //  console.log(mobile);
+          const result=await mobileCollection.insertOne(mobile)
+          res.send(result)
+    })
 
 
 
