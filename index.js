@@ -64,6 +64,10 @@ async function run() {
     })
 
 
+    app.get('/mobiles',async(req,res)=>{
+         const result=await mobileCollection.find().toArray()
+         res.send(result)
+    })
 
 
 
