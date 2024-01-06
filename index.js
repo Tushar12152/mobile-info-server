@@ -84,6 +84,45 @@ async function run() {
           })
 
 
+    app.patch('/mobiles/:id',async(req,res)=>{
+       const id=req.params.id;
+      const filter = {_id:new ObjectId(id)}
+      const options = { upsert: true }
+  
+      const updatedMobile=req.body;
+        // console.log(updatedMobile);
+
+      const updateDoc = {
+        $set: {
+          name:updatedMobile.name,
+          brand:updatedMobile.brand,
+          ram:updatedMobile.ram,
+          rom:updatedMobile.rom,
+          battery:updatedMobile.battery,
+          processor:updatedMobile.processor,
+          camara:updatedMobile.camara,
+          price:updatedMobile.price,
+          color:updatedMobile.color,
+          screen:updatedMobile.screen,
+          finger:updatedMobile.finger,
+          flash:updatedMobile.flash,
+          status:updatedMobile.status,
+          network:updatedMobile.network,
+          fontCamara:updatedMobile.fontCamara,
+          sim:updatedMobile.sim,
+          usb:updatedMobile.usb,
+          radio:updatedMobile.radio,
+          faceLock:updatedMobile.faceLock,
+
+        },
+      };
+
+      const result = await mobileCollection.updateOne(filter, updateDoc, options);
+      res.send(result)
+
+    })
+
+
 
 
 
