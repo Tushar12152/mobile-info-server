@@ -46,6 +46,10 @@ async function run() {
     })
 
 
+    app.get('/adds',async(req,res)=>{
+         const result=await addCollection.find().toArray()
+         res.send(result)
+    })
 
 
 
