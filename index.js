@@ -83,6 +83,25 @@ async function run() {
 
 
 
+    app.patch('/users/:id',async (req,res)=>{
+          const id=req.params.id;
+          // console.log(id);
+          const filter = { _id: new ObjectId(id) };
+          const options = { upsert: true }
+          const info=req.body;
+          // console.log(info);
+          const updateDoc={
+            $set:{
+              role:info?.role
+            }
+          }
+
+          const result=await userCollection.updateOne(filter,updateDoc,options)
+          res.send(result)
+    })
+
+
+
 
 
     //mobile-collection
@@ -154,6 +173,11 @@ async function run() {
     })
 
 
+    app.delete('/users/:id',async(req,res)=>{
+          const id=req.params.id
+          const result=await userCollection.deleteOne({_id:new ObjectId(id)})
+          res.send(result)
+    })
 
 
 
